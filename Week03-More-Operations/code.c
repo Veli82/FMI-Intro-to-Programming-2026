@@ -46,7 +46,8 @@ int main() {
 	float b = 0.3;
 	printf("%f", a == b);	//you would expect it to be 1, but it's 0 because of floating point rounding error
 	//printf("%.20f", a);
-	printf("%d", abs(a - b) < 0.000001);	//do this instead
+	float eps = 0.000001;
+	printf("%d", fabs(a - b) < eps);	//do this instead
 
 	//useful constants
 	float inf = INFINITY;
