@@ -9,31 +9,33 @@ void printArr(int arr[], int size)
     {
         printf("%d ", arr[i]);
     }
+    printf("\n");
     
 }
 
 
-void addAt(int arr[], unsigned size, int elem, unsigned pos)
+int addAt(int arr[], unsigned size, int cap, int elem, unsigned pos)
 {
-    if (pos > size) return;
+    if (size == cap) return size;    //check if there is space in the array
+    if (pos > size) return size;
     for (int i = size; i > pos; i--)
     {
         arr[i] = arr[i-1];
     }
     arr[pos] = elem;
-    return;
+    return ++size;
 }
 
 
-void removeAt(int arr[], unsigned size, unsigned pos)
+int removeAt(int arr[], unsigned size, unsigned pos)
 {
-    if (pos >= size) return;
+    if (pos >= size) return size;
     for (int i = pos; i < size -1; i++)
     {
         arr[i] = arr[i+1];
     }
     arr[size-1] = 0;
-    return;
+    return --size;
 }
 
 //remove all negative elements in array
@@ -50,6 +52,7 @@ void removeNeg(int arr[], unsigned size)
         }
 
     }
+    return size;
 }
 
 
@@ -104,7 +107,7 @@ int findInArr(int arr[], int size, int val)
 }
 
 
-//waay fatser than linear search
+//waay fatser than linear search, but works only when array is sorted
 int binary_search(int arr[], int size, int val)
 {
     int l = 0;
@@ -127,7 +130,7 @@ int main()
     const unsigned ARR_SIZE = 5;
     //int arr[10] = { 1,-2,-3, 4,-5};
     int arr[10] = { 3, 5, 2, 6, 4 };
-    //addAt(arr,ARR_SIZE,1,3);
+    //addAt(arr,ARR_SIZE,10,1,3);
     //removeAt(arr,ARR_SIZE, 1);
     //removeNeg(arr,ARR_SIZE);
     //bubble_sort(arr,5);
